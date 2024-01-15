@@ -1,0 +1,45 @@
+
+NAME
+    ps - process status
+
+
+DESCRIPTION
+    The ps utility displays a header line, followed by lines containing information about all of your processes
+    that have controlling terminals.
+
+    The options are as follows:
+
+    -a Display information about other users' processes as well as your own.
+
+    -e Display information about other users' processes, including those without controlling terminals.
+
+    -f Display the uid, pid, parent pid, recent CPU usage, process start time, controlling tty, elapsed CPU
+       usage, and the associated command.When used with -af and -ef it adds to the effect of the options.
+
+    
+
+IMPLEMENTATION
+
+    myps -{options}
+    Aboove is the format in which the command should be executed.
+
+    myshell will execute the following 5 ps commands:
+    1.myps
+    2.myps -a
+    3.myps -e
+    4.myps -af 
+    5.myps -ef
+
+    Adding -f with the other options just increase the amount of details getting printed.
+
+    myps -af      would work.
+    myps -a -f    would not work.
+
+    The command uses strtok() function which breaks the command string into different tokens.
+    It stores the different strings into an array. The second element of the array is accessed to check for the options.
+    So if their are more than 2 tokens it will give an error.
+    Giving options other than the mentioned ones will also give an error.
+
+
+-------------------------------------END---------------------------------
+

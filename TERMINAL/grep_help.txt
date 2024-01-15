@@ -1,0 +1,47 @@
+
+NAME
+    grep - file pattern searcher
+
+DESCRIPTION
+    The grep utility searches any given input files, selecting lines that match one or more patterns.  By
+    default, a pattern matches an input line if the regular expression (RE) in the pattern matches the input
+    line without its trailing newline.  An empty expression matches every line.  Each input line that matches at
+    least one of the patterns is written to the standard output.
+
+    The following options are available:
+
+    -c Only a count of selected lines is written to standard output.
+
+    -i Perform case insensitive matching. By default,grep is case sensitive.
+
+    -n Each output line is preceded by its relative line number in the file, starting at line 1.  The line
+       number counter is reset for each file processed.
+
+    -w The expression is searched for as a word (as if surrounded by '[[:<:]]' and '[[:>:]]').
+
+
+IMPLEMENTATION
+
+    mygrep -{options} pattern file
+    Above is the format in which the command shall be executed.
+
+    In case of more than options, standard dominance rule will be followed i.e. if there is -c then it will dominate all other options.
+    If there is no -c then all the options will do their work.
+
+    mygrep -in pattern file       would work.
+    mygrep -i -n pattern file     would not work.
+
+    The command works on strtok() function which will break the prompt string into pieces(max 4).
+    The string tokens are then stored in an array.
+    So the code considers array[2] as pattern and array[3] as file.
+    In case of -i -n type command array[3] would be pattern and array[2] would be '-n'.
+    So it would take -n as the pattern and search it in the file named 'patern' which if it doesn't exist, gives an error.
+
+    mygrep -i parth text5.txt
+    mygrep advait text1.txt
+    mygrep -in parth text3.txt
+    These are some example of codes that work.
+
+--------------------------------------END------------------------------------------------
+
+

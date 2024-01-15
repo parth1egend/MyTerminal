@@ -1,0 +1,49 @@
+
+NAME
+    mycp - copy files
+
+DESCRIPTION 
+    In the first synopsis form, the cp utility copies the contents of the source_file to the target_file.  In
+    the second synopsis form, the contents of each named source_file is copied to the destination
+    target_directory.  The names of the files themselves are not changed.  If cp detects an attempt to copy a
+    file to itself, the copy will fail.
+
+    The following options are available:
+
+    -i  Cause cp to write a prompt to the standard error output before copying a file that would overwrite an
+        existing file.  If the response from the standard input begins with the character ‘y’ or ‘Y’, the file
+        copy is attempted.  (The -i option overrides any previous -n option.)
+
+    -n  Do not overwrite an existing file.  (The -n option overrides any previous -i options.)
+
+    -v  Cause cp to be verbose , showing files as they are copied.
+
+    
+
+
+IMPLEMENTATION
+
+    mycp -{option} file file/directory
+    Above is the format in which the command shall be executed.
+    
+    In case of more than 1 option , the last one would be dominative.
+    If any option other than n,i,v is used , error will be prompted.
+
+    mycp -nn file1 file2 would work;
+    mycp -n -n file1 file2 would give error.
+
+    The command works on strtok() function which will break the prompt string into pieces(max 4).
+    The string tokens are then stored in an array.
+    So the code considers array[2] as file1 and array[3] as file2 or directory.
+    In case of -n -n type command array[3] would be file1 and array[2] would be '-n'.
+    It would try to open the first file , here '-n'.Unable to do so, it will give error and code would not work.
+
+    mycp -n text1.txt text2.txt
+    mycp file1.txt file2.txt
+    mycp file1 dir
+    mycp -i file1 dir
+    These are some examples of code that work.
+    
+-----------------------------------------END------------------------------------------------
+    
+

@@ -1,0 +1,52 @@
+
+NAME
+    mymv - move files
+
+DESCRIPTION 
+    In its first form, the mv utility renames the file named by the source operand to the destination path named
+    by the target operand.  This form is assumed when the last operand does not name an already existing
+    directory.
+
+    In its second form, mv moves each file named by a source operand to a destination file in the existing
+    directory named by the directory operand.  The destination path for each operand is the pathname produced by
+    the concatenation of the last operand, a slash, and the final pathname component of the named file.
+
+    The following options are available:
+
+    -i  Cause mv to write a prompt to standard error before moving a file that would overwrite an existing
+        file.  If the response from the standard input begins with the character ‘y’ or ‘Y’, the move is
+        attempted.  (The -i option overrides any previous -n options.)
+
+    -n  Do not overwrite an existing file.  (The -n option overrides any previous -i options.)
+
+    -v  Cause mv to be verbose , showing files as they are removed.
+
+    
+
+
+IMPLEMENTATION
+
+    mymv -{option} file file/directory
+    Above is the format in which the command shall be executed.
+    
+    In case of more than 1 option , the last one would be dominative.
+    If any option other than n,i,v is used , error will be prompted.
+
+    mymv -nn file1 file2 would work;
+    mymv -n -n file1 file2 would give error.
+
+    The command works on strtok() function which will break the prompt string into pieces(max 4).
+    The string tokens are then stored in an array.
+    So the code considers array[2] as file1 and array[3] as file2 or directory.
+    In case of -n -n type command array[3] would be file1 and array[2] would be '-n'.
+    It would try to open the first file , here '-n'.Unable to do so, it will give error and code would not work.
+
+    mymv -n text1.txt text2.txt
+    mymv file1.txt file2.txt
+    mymv file1 dir
+    mymv -i file1 dir
+    These are some examples of code that work.
+    
+-----------------------------------------END------------------------------------------------
+    
+

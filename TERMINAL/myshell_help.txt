@@ -1,0 +1,35 @@
+                         
+                         
+                          General Commands Manual   
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created by Parth Kansagra
+-------------------------   
+
+myshell runs the 5 basic commands:
+1.myls
+2.mycp
+3.mymv
+4.mygrep
+5.myps
+
+        ls:
+        list directory contents
+        To know more type "help myls"
+
+        cp:
+        copy files
+        To know more type "help mycp"
+
+        mv:
+        move files
+        To know more type "help mymv" . 
+
+        grep:
+        file pattern searcher
+        To know more type "help mygrep"
+
+        ps:
+        process status
+        To know more type "help myps"
+
+
